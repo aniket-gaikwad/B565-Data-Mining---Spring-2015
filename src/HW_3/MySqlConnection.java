@@ -15,7 +15,7 @@ public class MySqlConnection {
             String username = userName;     //"root"
             String password = passWord;    //"";
             conn = DriverManager.getConnection(url, username, password);
-            System.out.println("Success");
+            //System.out.println("Connection Success");
         }
         catch(Exception e){
             System.out.println(e.toString());
