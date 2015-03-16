@@ -1,0 +1,4 @@
+A,B,C,D
+good,1,Y,snow
+ugly,3,Y,sun
+ugly,3,Y,sun

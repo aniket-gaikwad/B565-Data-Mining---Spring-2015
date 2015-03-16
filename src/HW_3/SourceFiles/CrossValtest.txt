@@ -1,0 +1,3 @@
+good,cloudy,N
+bad,rain,N
+bad,rain,Y

@@ -28,7 +28,7 @@ public class TraverseTree {
 	
 	public void printNode(TreeNode root){
 		int i=0;
-		//System.out.println("---------------------------------------------");
+		System.out.println("---------------------------------------------");
 		//System.out.println("attributeName :"+root.attributeName);
 		//System.out.println("prevAttributeValue : "+root.prevAttributeValue);
 		//System.out.println("Probability :");
@@ -56,7 +56,7 @@ public class TraverseTree {
 		System.out.println("\n ---------------------------------------------");
 	}
 	
-	public void getProbabilityOftupleInTestFile(String testFile,TreeNode root){
+	public void getProbabilityOftupleInTestFile(String testFile,TreeNode root,ArrayList<String> inputTrainAttribute,boolean isCrossValidation){
 		System.out.println("------------------------------------------------");
 		System.out.println(" **** Testing on test data starts **** ");
 		System.out.println("Test File : "+testFile);
@@ -67,19 +67,38 @@ public class TraverseTree {
 			String line;
 			TreeNode node;
 			TreeNode parentNode;
+			
 			while((line=buf.readLine())!=null){
 				int i=0;
-				String[] result=line.split("\\t");
+				String[] result;
+				//System.out.println("isCrossValidation : "+isCrossValidation);
+				if(isCrossValidation){
+					result=line.split(",");
+				}
+				else{
+					result=line.split("\\t");
+				}
+				
 				node=root;
 				while(i<result.length){
-					if(result[i].equals("*")){
+					//System.out.println("node.attributeName : "+node.attributeName);
+					String nextNode=node.attributeName;
+					//System.out.println("nextNode : "+nextNode);
+					if(nextNode.equals("Child Node")){
+						break;
+					}
+					int index=inputTrainAttribute.indexOf(nextNode);
+					//System.out.println("index : "+index);
+					String testTupleValue=result[index];
+					//System.out.println("testTupleValue : "+testTupleValue);
+					if(testTupleValue.equals("*")){
 						break;
 					}
 					parentNode=node;
-					node=getNodeBasedOnTuple(result[i],node);
+					node=getNodeBasedOnTuple(testTupleValue,node);
 					if(node==null){
 						// The new tuple introduced in test data. Get probability of parent node.
-						System.out.println(" New Tuple encountered ");
+						//System.out.println(" New Tuple encountered ");
 						node=parentNode;
 						break;
 					}
@@ -101,10 +120,11 @@ public class TraverseTree {
 			System.out.println(" IOExceptio :");
 			e.printStackTrace();
 		}
-		System.out.println(" **** Testing on test data starts **** ");
+		System.out.println(" **** Testing on test data Ends **** ");
 	}
 	
 	public TreeNode getNodeBasedOnTuple(String result,TreeNode root){
+		//System.out.println("result : "+result);
 		if(result.equals("*")){
 			return root;
 		}

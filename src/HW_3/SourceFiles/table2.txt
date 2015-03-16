@@ -1,0 +1,4 @@
+A,B,C,D
+bad,1,Y,cloudy
+good,2,Y,snow
+bad,2,N,snow

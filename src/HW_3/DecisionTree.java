@@ -24,7 +24,7 @@ public class DecisionTree {
 	public String server="localhost";
 	public String userName="root";
 	public String passWord="";
-	public String tableName="table1";
+	public String tableName="traindata";
 	public int numberOfArgumentInSql=0;
 	public int numberOfDistinctClassValues;
 	public int lengthOftuple;
@@ -142,7 +142,7 @@ public class DecisionTree {
 			String[] header = line.split(",");   // This is data header
 	/***********************************************************************************************/
 			System.out.println("Dropping existing table");
-			String query=("drop table if exists table1\n"); 
+			String query=("drop table if exists traindata\n"); 
 			try{
 				makeConnection();
 				st.executeUpdate(query);
@@ -155,7 +155,7 @@ public class DecisionTree {
 	/*************************************************************************************************/
 			int numberOfColumns=header.length;
 			query="";
-			query="Create table table1 ( ";
+			query="Create table traindata ( ";
 			System.out.println("Creating a new table");
 			for(int columnIndex=0;columnIndex<numberOfColumns;columnIndex++){
 				if(columnIndex==0){
@@ -184,7 +184,7 @@ public class DecisionTree {
 			while((line = inputBuffer.readLine())!=null){
 				String[] tuple = line.split(",");
 				query="";
-				query="insert into table1 values(";
+				query="insert into traindata values(";
 				for(int tupleIndex=0 ; tupleIndex<numberOfColumns ; tupleIndex++){
 					//System.out.println(" tuple[tupleIndex] : "+tuple[tupleIndex]);
 					if(tupleIndex==numberOfColumns-1){
@@ -387,6 +387,7 @@ public class DecisionTree {
 	public TreeNode ID3(ArrayList<String[]> examples,String targetAttribute,String trainAttribute,String condition,String prevAttributeValue){
 		
 		int noOfAttrArg = 0;
+		//System.out.println(" STATUS OF : "+isThisFirstCall);
 		//System.out.println("---------------------------------------------------------------");
 		//System.out.println(" ****** ID3 Begin ****** ");
 		//System.out.println("\n targetAttribute : "+targetAttribute);
@@ -482,10 +483,7 @@ public class DecisionTree {
 			/*****/
 			int x=0;
 			//System.out.println(" For attribute which has maximum Info gain values are : ");
-			while(x<distictValuesOfAttribute.size()){
-				//System.out.println(distictValuesOfAttribute.get(x)+"\t");
-				x++;
-			}
+			
 			//System.out.println("-----------------------------------------------------------");
 		   /***/
 			
@@ -751,7 +749,7 @@ public class DecisionTree {
 			while(i<len){
 				System.out.print("\t"+x[i++]);
 			}
-			//System.out.println("");
+			System.out.println("");
 		}
 	}
 
