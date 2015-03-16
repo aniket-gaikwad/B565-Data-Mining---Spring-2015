@@ -36,7 +36,7 @@ public class testFiles {
 				}
 			}
 			System.out.println("\n **** Execute ID3 Starts *****");
-			newID3.ExecuteID3(treeFile);
+			//newID3.ExecuteID3(treeFile);
 			System.out.println("\n **** nFold.generateTestFile Starts *****");
 			nFold.generateTestFile(newID3.d1.attributes, testFilePath);
 			System.out.println("\n **** traversal.getProbabilityOftupleInTestFile Starts *****");

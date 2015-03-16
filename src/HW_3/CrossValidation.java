@@ -18,6 +18,11 @@ public class CrossValidation {
 		NFoldCrossValidation nFold=new NFoldCrossValidation();
 		ID3tree newID3=new ID3tree();
 		
+		String databaseName=args[2];
+		String server=args[3];
+		String passWord=args[4];
+		String userName=args[5];
+		
 		// Getting run time arguments
 		String treeFile=args[0];
 		int noOfCrossValidationFold=Integer.parseInt(args[1]);
@@ -62,7 +67,7 @@ public class CrossValidation {
 		System.out.println("FILE : "+file);
 		
 		// Splitting file in 3 parts
-		sp1.splitFiles(file, 3);
+		sp1.splitFiles(file, noOfCrossValidationFold);
 		
 		// Starting Execution of n-Cross fold validation
 		int testFileNumber=0;
@@ -82,7 +87,7 @@ public class CrossValidation {
 				}
 			}
 			System.out.println("\n **** Execute ID3 Starts *****");
-			newID3.ExecuteID3(treeFile);
+			newID3.ExecuteID3(treeFile,databaseName,server,passWord,userName);
 			//System.out.println("\n **** nFold.generateTestFile Starts *****");
 			nFold.generateTestFile(newID3.d1.attributes, testFilePath);
 			//System.out.println("\n **** traversal.getProbabilityOftupleInTestFile Starts *****");

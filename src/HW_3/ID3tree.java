@@ -12,6 +12,11 @@ public class ID3tree {
 		DecisionTree d1=new DecisionTree();
 		String trainFile=args[0];
 		String testFile=args[1];
+		d1.databaseName=args[2];
+		d1.server=args[3];
+		d1.passWord=args[4];
+		d1.userName=args[5];
+		
 		System.out.println("\n Step 1 :");
 		if(!d1.getInputData(trainFile)){
 			return;
@@ -60,9 +65,13 @@ public class ID3tree {
 		System.out.println("\n\n *********** PROCESS ENDS ************");
 	}
 	
-	public void ExecuteID3(String treeFile){
+	public void ExecuteID3(String treeFile,String databaseName,String server,String passWord,String userName){
 		System.out.println(" *********** PROCESS STARTS ************");
 		d1=new DecisionTree();
+		d1.databaseName=databaseName;
+		d1.server=server;
+		d1.passWord=passWord;
+		d1.userName=userName;
 		System.out.println("\n Step 1 :");
 		if(!d1.getInputData(treeFile)){
 			return;

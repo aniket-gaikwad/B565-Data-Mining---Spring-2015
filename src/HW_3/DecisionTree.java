@@ -20,10 +20,10 @@ public class DecisionTree {
 	public String inputFile;
 	public String attributes;
 	public String classLabelAttribute;
-	public String databaseName="decisiontree";
-	public String server="localhost";
-	public String userName="root";
-	public String passWord="";
+	public String databaseName;//="decisiontree";
+	public String server;//="localhost";
+	public String userName;//="root";
+	public String passWord;//="";
 	public String tableName="traindata";
 	public int numberOfArgumentInSql=0;
 	public int numberOfDistinctClassValues;

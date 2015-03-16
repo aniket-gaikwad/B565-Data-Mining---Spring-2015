@@ -4,11 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class TraverseTree {
+	MySqlConnection mySqlConn = null;
+	Statement st;
 
 	public void traverseTree(TreeNode root){
 		if(root==null){
@@ -123,6 +127,8 @@ public class TraverseTree {
 		System.out.println(" **** Testing on test data Ends **** ");
 	}
 	
+	 
+	
 	public TreeNode getNodeBasedOnTuple(String result,TreeNode root){
 		//System.out.println("result : "+result);
 		if(result.equals("*")){
@@ -138,6 +144,28 @@ public class TraverseTree {
 		        }
 		    }
 			return null;
+		}
+	}
+	
+	public void makeConnection(String server,String databaseName,String userName,String passWord){
+		/*
+		 * makeConnection() : This function will form a SQL query based on the ATTRIBUTE and CLASSLABEL.
+		 *                    and execute query on the MySql database by making ODBC connection.
+		 *                    The CLASSLABEL will be always the last part of returned tuple.
+		 *                    The each tuple returned is stored in ArrayList named TrainData.
+		 * */
+		
+		
+		
+		try{
+			mySqlConn=new MySqlConnection(server,databaseName,userName,passWord);
+			st=mySqlConn.conn.createStatement();
+		 }
+		catch(SQLException s){
+			System.out.println("SQL not able to execute");
+		}
+		catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 }
