@@ -42,7 +42,7 @@ public class testFiles {
 			System.out.println("\n **** traversal.getProbabilityOftupleInTestFile Starts *****");
 			//System.out.println("\n Step 4 : ");
 			TraverseTree traversal=new TraverseTree();
-			traversal.getProbabilityOftupleInTestFile(testFilePath,newID3.root);
+			//traversal.getProbabilityOftupleInTestFile(testFilePath,newID3.root);
 			testFileNumber++;
 		}
 		

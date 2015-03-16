@@ -46,7 +46,7 @@ public class TestDecisionTree {
 		System.out.println("---------------------------------------");
 		System.out.println("*** Testing on test data ***");
 		String fileName="E:\\Spring 2015\\B565-Data Mining\\DataMining\\DataMining\\src\\HW_3\\SourceFiles\\test.txt";
-		traversal.getProbabilityOftupleInTestFile(fileName,root);
+		//traversal.getProbabilityOftupleInTestFile(fileName,root);
 	}
 	
 	
